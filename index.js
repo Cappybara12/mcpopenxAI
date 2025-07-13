@@ -228,6 +228,21 @@ class OpenXAIServer {
             },
             required: []
           }
+        },
+        {
+          name: 'get_deployment_guide',
+          description: 'Get step-by-step guidance for deploying models using OpenXAI Studio',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              deployment_type: {
+                type: 'string',
+                description: 'Type of deployment guidance needed',
+                enum: ['quick_start', 'detailed', 'app_store', 'troubleshooting']
+              }
+            },
+            required: []
+          }
         }
       ]
     }));
@@ -266,6 +281,9 @@ class OpenXAIServer {
           
           case 'get_framework_info':
             return await this.getFrameworkInfo(args.info_type || 'overview');
+          
+          case 'get_deployment_guide':
+            return await this.getDeploymentGuide(args.deployment_type || 'quick_start');
           
           default:
             throw new Error(`Unknown tool: ${name}`);
@@ -977,6 +995,235 @@ print(f"PGI Score: {score}")
         {
           type: 'text',
           text: info[infoType] || info.overview
+        }
+      ]
+    };
+  }
+
+  async getDeploymentGuide(deploymentType) {
+    const guides = {
+      quick_start: `🚀 OpenXAI Studio Quick Start Guide
+
+To deploy your AI model using OpenXAI Studio's decentralized platform:
+
+1. 🌐 **Visit OpenXAI Studio App Store**
+   https://studio.openxai.org/app-store
+
+2. 🔗 **Connect Your Web3 Wallet**
+   - Click "Connect Wallet" button
+   - Choose MetaMask, WalletConnect, or other wallets
+   - Approve the connection
+
+3. 🤖 **Select Your Model**
+   Browse categories and choose from:
+   • General: qwen, deepseek-r1, llama models
+   • Vision: llama-3.2-vision, qwen2-vl
+   • Embedding: text-embedding models
+   • Code: codelama, qwen2.5-coder
+
+4. ⚙️ **Choose Parameters**
+   Select model size: 1.5b, 7b, 32b, 70b, etc.
+
+5. 🚀 **Select Deployment Type**
+   Choose X node for decentralized deployment
+
+6. 🔥 **Deploy**
+   Click deploy button and wait 2-5 minutes
+
+7. 📊 **Access Your Deployment**
+   Go to /deployments section
+
+8. 🔑 **Login & Use**
+   Use provided credentials to access your deployed model
+
+🎯 **Ready to start?** Visit https://studio.openxai.org/app-store now!`,
+
+      detailed: `📋 OpenXAI Studio Detailed Deployment Guide
+
+**Pre-requisites:**
+- Web3 wallet (MetaMask, WalletConnect, etc.)
+- Sufficient crypto balance for deployment costs
+- Clear understanding of your model requirements
+
+**Step-by-Step Process:**
+
+**Phase 1: Preparation**
+1. 📱 Install and setup your Web3 wallet
+2. 🔐 Secure your wallet with strong passwords
+3. 💰 Ensure adequate balance for deployment
+
+**Phase 2: Model Selection**
+1. 🌐 Navigate to https://studio.openxai.org/app-store
+2. 🔍 Browse available models by category:
+   - **General Models**: Multi-purpose language models
+   - **Vision Models**: Image and video processing
+   - **Embedding Models**: Text similarity and search
+   - **Code Models**: Programming and code generation
+
+3. 📊 Compare model specifications:
+   - Parameter counts (1.5b, 7b, 32b, 70b, etc.)
+   - Memory requirements
+   - Processing capabilities
+   - Cost implications
+
+**Phase 3: Deployment Configuration**
+1. ⚙️ Select resource requirements:
+   - CPU cores needed
+   - RAM allocation
+   - Storage requirements
+   - Network bandwidth
+
+2. 🌐 Choose deployment type:
+   - **X Node**: Decentralized deployment (recommended)
+   - **Traditional**: Centralized deployment options
+
+3. 💳 Select subscription model:
+   - Side Later: Pay-as-you-go
+   - ERC 4337: Subscription service
+   - Model Ownership: Full control
+   - Fractionalized AI: Shared ownership
+
+**Phase 4: Deployment Execution**
+1. 🚀 Review configuration summary
+2. 🔥 Click deploy button
+3. ⏳ Wait 2-5 minutes for deployment
+4. 📊 Monitor deployment progress
+
+**Phase 5: Access & Management**
+1. 🔑 Receive deployment credentials
+2. 📊 Access /deployments section
+3. 🔐 Login with provided credentials
+4. 🎯 Start using your deployed model
+
+**Troubleshooting:**
+- Wallet connection issues
+- Deployment failures
+- Access problems
+- Performance optimization`,
+
+      app_store: `🛒 OpenXAI Studio App Store Guide
+
+**App Store URL:** https://studio.openxai.org/app-store
+
+**Navigation:**
+- **Categories**: General, Vision, Embedding, Code
+- **Popular Models**: Featured and trending models
+- **Search**: Find specific models quickly
+- **Filters**: Sort by parameters, popularity, cost
+
+**Available Models:**
+
+**📚 General Models:**
+- qwen: Versatile language model
+- deepseek-r1: Advanced reasoning capabilities
+- llama models: Meta's flagship models
+- gemma: Google's efficient models
+
+**👁️ Vision Models:**
+- llama-3.2-vision: Multi-modal understanding
+- qwen2-vl: Vision-language processing
+- Advanced image recognition models
+
+**🔍 Embedding Models:**
+- text-embedding-3-small: Efficient embeddings
+- text-embedding-3-large: High-quality embeddings
+- Specialized semantic search models
+
+**💻 Code Models:**
+- codelama: Meta's code generation
+- qwen2.5-coder: Advanced coding assistant
+- Programming language specialists
+
+**Model Selection Tips:**
+1. 🎯 Match model to your use case
+2. 📊 Consider parameter count vs. performance
+3. 💰 Balance cost with capabilities
+4. 🔄 Test with smaller models first
+5. 📈 Scale up based on results
+
+**Deployment Options:**
+- **X Node**: Decentralized, cost-effective
+- **Standard**: Traditional cloud deployment
+- **Custom**: Specialized configurations
+
+**Getting Started:**
+1. Visit the app store
+2. Connect your wallet
+3. Browse models
+4. Select and deploy
+5. Access via /deployments`,
+
+      troubleshooting: `🔧 OpenXAI Studio Troubleshooting
+
+**Common Issues & Solutions:**
+
+**🔗 Wallet Connection Problems:**
+- **Issue**: Wallet won't connect
+- **Solution**: 
+  1. Refresh the page
+  2. Clear browser cache
+  3. Try different browser
+  4. Check wallet extension
+
+**🚀 Deployment Failures:**
+- **Issue**: Deployment times out
+- **Solution**:
+  1. Check network connectivity
+  2. Verify sufficient wallet balance
+  3. Try smaller model first
+  4. Contact support if persistent
+
+**🔐 Access Issues:**
+- **Issue**: Can't access deployed model
+- **Solution**:
+  1. Check credentials are correct
+  2. Wait for deployment to complete
+  3. Try different browser
+  4. Clear cookies and cache
+
+**⚡ Performance Problems:**
+- **Issue**: Model runs slowly
+- **Solution**:
+  1. Upgrade to higher-parameter model
+  2. Increase resource allocation
+  3. Optimize input data
+  4. Consider X node deployment
+
+**💰 Cost Issues:**
+- **Issue**: Unexpected charges
+- **Solution**:
+  1. Review subscription model
+  2. Monitor usage in /deployments
+  3. Set up cost alerts
+  4. Consider different deployment type
+
+**📊 Monitoring Issues:**
+- **Issue**: Can't see deployment status
+- **Solution**:
+  1. Refresh /deployments page
+  2. Check wallet connection
+  3. Verify deployment ID
+  4. Contact support
+
+**🆘 Getting Help:**
+- Documentation: https://studio.openxai.org/docs
+- Community: Discord/Telegram support
+- Support: Contact through app
+- Status: Check system status page
+
+**Prevention Tips:**
+1. 🔐 Keep wallet secure
+2. 📊 Monitor usage regularly
+3. 💰 Set spending limits
+4. 🔄 Test small deployments first
+5. 📚 Read documentation thoroughly`
+    };
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text: guides[deploymentType] || guides.quick_start
         }
       ]
     };

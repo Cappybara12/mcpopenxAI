@@ -208,6 +208,271 @@ Get information about the OpenXAI framework.
 Tell me about the OpenXAI framework
 ```
 
+## Model Deployment Guide
+
+### 🚀 Deployment Options
+
+OpenXAI supports multiple deployment options to suit different needs and budgets:
+
+#### 1. **Xnode (Recommended for Beginners)**
+- ✅ **Decentralized**: True decentralized deployment
+- ✅ **Web3 Ready**: Built for blockchain integration  
+- ✅ **No KYC**: Quick setup without identity verification
+- 💰 **Cost**: Free tier available
+- 🔧 **Setup**: One-click deployment
+
+**Quick Start:**
+```bash
+# Deploy to Xnode
+npm run deploy:xnode
+
+# Or manually:
+curl -X POST https://api.xnode.ai/deploy \
+  -H "Content-Type: application/json" \
+  -d '{
+    "project": "openxai-mcp",
+    "model": "your-model-name",
+    "framework": "openxai"
+  }'
+```
+
+#### 2. **Xnode DVM (Advanced)**
+- ❌ **Centralized**: Traditional cloud deployment
+- ✅ **Web3 Ready**: Crypto payment integration
+- ✅ **No KYC**: Anonymous deployment
+- 💰 **Cost**: 500 OPNX tokens
+- 🔧 **Performance**: Higher compute resources
+
+#### 3. **Vultr (Washington)**
+- ❌ **Centralized**: Traditional cloud provider
+- ✅ **Web3 Ready**: Cryptocurrency payments accepted
+- ✅ **No KYC**: Minimal verification required
+- 💰 **Cost**: $655/month
+- 🌍 **Location**: Washington DC, USA
+
+#### 4. **AWS EC2 (Hong Kong)**
+- ❌ **Centralized**: Amazon Web Services
+- ✅ **Web3 Ready**: Supports Web3 applications
+- ✅ **No KYC**: Standard AWS verification
+- 💰 **Cost**: $1,321/month
+- 🌍 **Location**: Hong Kong
+
+#### 5. **Google Cloud (NYC)**
+- ❌ **Centralized**: Google Cloud Platform
+- ✅ **Web3 Ready**: Web3 compatible
+- ✅ **No KYC**: Google account required
+- 💰 **Cost**: $1,745/month
+- 🌍 **Location**: New York City
+
+#### 6. **Xnode One (Hardware)** - Coming Soon
+- ✅ **Decentralized**: Physical hardware nodes
+- ✅ **Web3 Ready**: Native Web3 integration
+- ✅ **No KYC**: Completely anonymous
+- 💰 **Cost**: $0/month (hardware purchase required)
+- 🔧 **Control**: Full hardware control
+
+### 🔗 OpenXAI Studio Integration
+
+#### Quick OpenXAI Studio Deployment
+
+Deploy your models using OpenXAI Studio's decentralized platform:
+
+```bash
+# 1. Setup OpenXAI Studio integration
+npm run setup:openxai-studio
+
+# 2. Connect your Web3 wallet
+npm run connect:wallet
+
+# 3. Deploy with OpenXAI Studio
+npm run deploy:openxai-studio
+```
+
+#### Available Models in OpenXAI Studio
+
+- **DeepSeek R1** - Advanced reasoning model
+- **Code Llama** - Meta's code generation model  
+- **Gamma 2** - Google's latest model
+- **Llama 3.2 Vision** - 90B parameter vision model
+- **Embedding Models** - For text embeddings
+- **Code Models** - Specialized for code generation
+
+#### Deployment Process
+
+**🌐 Visit OpenXAI Studio App Store**: https://studio.openxai.org/app-store
+
+1. **Connect Wallet**: Web3 wallet connection for decentralized access
+2. **Browse App Store**: Explore models in categories (General, Vision, Embedding, Code)
+3. **Select Model**: Choose from popular models:
+   - **DeepSeek R1** (1.5b, 7b, 8b, 14b, 32b, 70b, 671b)
+   - **Code Llama** (7b, 13b, 34b, 70b) 
+   - **Qwen 2.5** (0.5b, 1.5b, 3b, 7b, 14b, 32b, 72b)
+   - **Llama 3.2 Vision** (11b, 90b)
+   - **Gemma 2** (2b, 9b, 27b)
+   - And many more...
+4. **Choose Parameters**: Select model size based on your needs
+5. **Select Deployment Type**: Choose X node or other deployment options
+6. **Deploy**: Hit deployment button (2-5 minutes)
+7. **Access Deployments**: Go to `/deployments` section
+8. **Login**: Use provided credentials to access your deployed model
+
+### 🎯 Step-by-Step Deployment
+
+#### Option 1: Interactive Deployment Wizard
+
+```bash
+# Run the deployment wizard
+npm run deploy
+
+# Follow the prompts:
+# 1. Select deployment provider (Xnode, Vultr, AWS, etc.)
+# 2. Choose your model configuration
+# 3. Set up authentication (if required)
+# 4. Configure scaling options
+# 5. Deploy and get your endpoint URL
+```
+
+#### Option 2: Manual Configuration
+
+1. **Choose Your Provider**
+   ```bash
+   # For Xnode (Free tier)
+   npm run deploy:xnode --tier=free
+   
+   # For Vultr
+   npm run deploy:vultr --region=washington
+   
+   # For AWS
+   npm run deploy:aws --region=hk
+   
+   # For Google Cloud
+   npm run deploy:gcp --region=nyc
+   ```
+
+2. **Configure Model Settings**
+   ```json
+   {
+     "model": {
+       "name": "openxai-explainer",
+       "version": "1.0.0",
+       "framework": "openxai",
+       "explainer": "shap",
+       "dataset": "german"
+     },
+     "deployment": {
+       "provider": "xnode",
+       "tier": "free",
+       "scaling": "auto"
+     }
+   }
+   ```
+
+3. **Set Up Authentication**
+   ```bash
+   # For providers requiring authentication
+   npm run auth:setup
+   
+   # Follow provider-specific login flow
+   # Get your deployment credentials
+   ```
+
+4. **Deploy and Test**
+   ```bash
+   # Deploy your model
+   npm run deploy:execute
+   
+   # Test your deployment
+   npm run test:deployment
+   
+   # Get your endpoint URL
+   npm run get:endpoint
+   ```
+
+### 🔐 Authentication & Access
+
+#### User Login Flow
+
+Similar to Hugging Face, users can easily access deployed models:
+
+1. **Visit Your Model Interface**
+   ```
+   https://your-deployment-url/ui
+   ```
+
+2. **Login Options**
+   - **Web3 Wallet**: Connect with MetaMask, WalletConnect
+   - **Traditional**: Email/password or OAuth
+   - **API Key**: For programmatic access
+
+3. **Model Access**
+   - Interactive web interface
+   - API endpoints
+   - SDK integration
+
+#### Quick Access Example
+
+```javascript
+// JavaScript SDK
+import { OpenXAIClient } from 'openxai-client';
+
+const client = new OpenXAIClient({
+  endpoint: 'https://your-deployment-url',
+  apiKey: 'your-api-key'
+});
+
+// Generate explanation
+const explanation = await client.explain({
+  method: 'shap',
+  data: [1, 0, 1, 0, 1],
+  model: 'german-credit'
+});
+```
+
+### 📊 Deployment Monitoring
+
+#### Real-time Metrics
+
+Monitor your deployed models:
+
+```bash
+# Check deployment status
+npm run status
+
+# View usage analytics
+npm run analytics
+
+# Monitor performance
+npm run monitor
+```
+
+#### Cost Optimization
+
+```bash
+# Analyze deployment costs
+npm run cost:analyze
+
+# Optimize for budget
+npm run cost:optimize
+
+# Set up alerts
+npm run alerts:setup
+```
+
+### 🔄 Switching Between Deployments
+
+Easily switch between different deployment providers:
+
+```bash
+# List current deployments
+npm run list:deployments
+
+# Switch to different provider
+npm run switch:provider --to=xnode
+
+# Migrate between providers
+npm run migrate --from=aws --to=xnode
+```
+
 ## Usage Examples
 
 ### Basic Dataset and Model Loading
@@ -231,6 +496,57 @@ Load the German Credit dataset and list available models for it
 1. List all explanation methods available in OpenXAI
 2. Show the evaluation metrics for faithfulness
 3. Get the current leaderboard for the COMPAS dataset
+```
+
+### Deployment Workflow
+
+```
+1. Visit OpenXAI Studio App Store: https://studio.openxai.org/app-store
+2. Connect your Web3 wallet (MetaMask, WalletConnect, etc.)
+3. Browse and select your desired model from the app store
+4. Choose model parameters (1.5b, 7b, 32b, etc.)
+5. Select deployment type (X node for decentralized deployment)
+6. Click deploy button and wait 2-5 minutes
+7. Go to /deployments section to access your deployment
+8. Use provided credentials to login to your deployed model
+9. Start using your decentralized AI model for your projects!
+```
+
+### OpenXAI Studio Integration Guide
+
+When a user wants to deploy a model, here's the complete process:
+
+#### 🚀 **Quick Start Guide**
+
+1. **Visit the App Store**: https://studio.openxai.org/app-store
+2. **Connect Wallet**: Click "Connect Wallet" button
+3. **Browse Models**: Explore categories:
+   - **General**: qwen, deepseek-r1, llama models
+   - **Vision**: llama-3.2-vision, qwen2-vl
+   - **Embedding**: text-embedding models
+   - **Code**: codelama, qwen2.5-coder
+4. **Select Model**: Click on your preferred model
+5. **Choose Parameters**: Select size (1.5b, 7b, 32b, etc.)
+6. **Configure Deployment**: Choose X node (decentralized) or other options
+7. **Deploy**: Click deploy button
+8. **Access**: Go to `/deployments` and use your credentials
+
+#### 🔧 **Using This MCP**
+
+Our MCP helps you prepare for OpenXAI Studio deployment:
+
+```bash
+# 1. Setup your preferences
+npm run setup:openxai-studio
+
+# 2. Connect wallet simulation
+npm run connect:wallet
+
+# 3. Get deployment guidance
+npm run deploy:openxai-studio
+
+# 4. Check deployment status
+npm run status
 ```
 
 ## Development

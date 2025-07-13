@@ -1,0 +1,42 @@
+{
+  "name": "openxai-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol (MCP) server for OpenXAI - A framework for evaluating and benchmarking post hoc explanation methods",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "openxai",
+    "explainable-ai",
+    "xai",
+    "machine-learning",
+    "explanation-methods",
+    "evaluation",
+    "benchmarking"
+  ],
+  "author": "OpenXAI MCP Server",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "axios": "^1.6.0",
+    "fs-extra": "^11.2.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/openxai-mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/openxai-mcp/issues"
+  },
+  "homepage": "https://github.com/yourusername/openxai-mcp#readme"
+} 
